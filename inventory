@@ -1,0 +1,7 @@
+[appliance]
+ubuntu ansible_host=x.x.x.x ansible_user=ubuntu ansible_become=yes
+
+[appliance:vars]
+collection_name=<enter collection name>
+collection_namespace=<enter collection namespace>
+
