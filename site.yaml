@@ -3,8 +3,8 @@
   gather_facts: false
   vars:
     collection_path: /usr/share/ansible/collections/ansible_collections
-    default_name_patter: "{{ collection_name }}_*"
-    target_name_pattern: "{{ target_name|default(lookup('vars', 'default_name_patter')) }}"
+    default_name_pattern: "{{ collection_name }}_*"
+    target_name_pattern: "{{ target_name|default(lookup('vars', 'default_name_pattern')) }}"
     integration_tests_path: "{{ collection_path }}/{{ collection_namespace }}/{{ collection_name }}/tests/integration/targets"
     integration_tests_pattern: "{{ target_name_pattern }}"
     integration_target_failures: []
