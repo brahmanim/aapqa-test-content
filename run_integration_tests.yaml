@@ -1,6 +1,6 @@
 ---
 - hosts: test_env
-  gather_facts: false
+  gather_facts: true
   vars:
     collection_path: /usr/share/ansible/collections/ansible_collections
     default_name_pattern: "{{ collection_name }}_*"
