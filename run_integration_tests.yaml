@@ -39,5 +39,6 @@
         apply:
           environment:
             ANSIBLE_DEBUG_BOTOCORE_LOGS: True
+            ANSIBLE_ROLES_PATH: "{{ integration_tests_path }}"
       with_items:
         - "{{ _integration_targets }}"
