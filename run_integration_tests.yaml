@@ -9,6 +9,9 @@
     integration_tests_pattern: "{{ target_name_pattern }}"
     integration_target_failures: []
 
+  environment:
+    ANSIBLE_ROLES_PATH: "{{ integration_tests_path }}"
+
   tasks:
     - name: Find integration test targets
       find:
@@ -39,6 +42,5 @@
         apply:
           environment:
             ANSIBLE_DEBUG_BOTOCORE_LOGS: True
-            ANSIBLE_ROLES_PATH: "{{ integration_tests_path }}"
       with_items:
         - "{{ _integration_targets }}"
