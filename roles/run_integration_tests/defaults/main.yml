@@ -1,1 +1,1 @@
-ANSIBLE_ROLES_PATH: "{{ integration_tests_path }}"
+roles_path: "{{ integration_tests_path }}"
