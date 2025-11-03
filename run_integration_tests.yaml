@@ -48,7 +48,7 @@
 
     - name: Run runme.sh to execute integration tests if runme.sh file exists at target
       ansible.builtin.shell: >
-        {{ _integration_targets[0] }}/runme.sh
+        bash -xv {{ _integration_targets[0] }}/runme.sh
         -e @{{ integration_path }}/ansible_content_settings.yml
         -e resource_prefix={{ resource_prefix }}
         -e tiny_prefix={{ tiny_prefix }}
