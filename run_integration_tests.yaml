@@ -41,22 +41,22 @@
         path: "{{ _integration_targets[0] }}/runme.sh"
       register: runme_file_status
 
-    - name: Check if ansible_content_settings.yml file exists in integration directory
+    - name: Check if integration_config.yml file exists in integration directory
       ansible.builtin.stat:
-        path: "{{ integration_path }}/ansible_content_settings.yml"
-      register: ansible_content_settings_file_status
+        path: "{{ integration_path }}/integration_config.yml"
+      register: integration_config_file_status
 
     - name: Run runme.sh to execute integration tests if runme.sh file exists at target
       ansible.builtin.shell: >
         {{ _integration_targets[0] }}/runme.sh
-        -e @{{ integration_path }}/ansible_content_settings.yml
+        -e @{{ integration_path }}/integration_config.yml
         -e resource_prefix={{ resource_prefix }}
         -e tiny_prefix={{ tiny_prefix }}
       args:
         chdir: "{{ _integration_targets[0] }}"
       register: runme_result
       changed_when: runme_result.rc != 0
-      when: runme_file_status.stat.exists and ansible_content_settings_file_status.stat.exists
+      when: runme_file_status.stat.exists and integration_config_file_status.stat.exists
 
     - name: Run integration tests
       ansible.builtin.include_role:
