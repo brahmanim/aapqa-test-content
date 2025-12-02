@@ -1,6 +1,6 @@
 ---
 - name: Run downstream integration tests
-  hosts: all
+  hosts: test_env
   gather_facts: "{{ facts_gathering|default(true) }}"
   vars:
     collection_path: /usr/share/ansible/collections/ansible_collections
@@ -48,6 +48,7 @@
 
     - name: Run runme.sh to execute integration tests if runme.sh file exists at target
       ansible.builtin.shell: >
+        ANSIBLE_INVENTORY_UNPARSED_FAILED=False
         {{ _integration_targets[0] }}/runme.sh
         -e @{{ integration_path }}/integration_config.yml
         -e resource_prefix={{ resource_prefix }}
